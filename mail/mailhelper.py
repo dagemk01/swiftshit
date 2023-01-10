@@ -2,6 +2,12 @@ import sendgrid
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import *
+from environs import Env
+
+env = Env()
+env.read_env()
+
+
 def mail_helper(reciever, sub, infosent):
     sg = sendgrid.SendGridAPIClient(api_key=os.environ.get('SENDGRID_API_KEY'))
     from_email = Email("dagemk1@umbc.edu")
@@ -22,7 +28,7 @@ def mailer (reciever, sub, infosent):
     subject=sub,
     html_content=infosent)
     try:
-        sg = SendGridAPIClient('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')
+        sg = SendGridAPIClient(env.str("SENDGRID_KEY"))
         response = sg.send(message)
         print(response.status_code)
         print(response.body)
