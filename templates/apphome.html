@@ -6,7 +6,7 @@
 {% if user.is_authenticated %}
 
 
-Hi {{ user.first_name }}! You are {{user.pk}}. Your salon Name is {{user.salon}} You have {{appointments_list|length}} appointments!!
+Hi {{ user.first_name }}! You are {{user.pk}}. Your salon Name is {{user.business_name}} You have {{appointments_list|length}} appointments!!
 <H1>Calendar</h1>
 <body>
   <div id="root"></div>
@@ -62,7 +62,7 @@ Hi {{ user.first_name }}! You are {{user.pk}}. Your salon Name is {{user.salon}}
             <form action="{% url 'appointment_home' appointment.pk%}" method="post">{% csrf_token %}
               <button type="submit" class="btn btn-outline-primary">Confirm</button>
           </form>
-            <a href="{%url 'appointment_delete' appointment.pk%}" class="card-link">Reschedule</a>
+            <a href="{%url 'appointment_delete' appointment.pk%}" class="card-link">Delete</a>
             <a href="{%url 'appointment_edit' appointment.pk%}" class="card-link">Reschedule</a>
             <style>
               .h5-link {
